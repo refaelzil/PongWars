@@ -1,5 +1,5 @@
-val scala3Version = "3.5.0"
-val dfhdlVersion  = "0.7.1"
+val scala3Version = "3.8.1"
+val dfhdlVersion  = "0.17.0"
 
 lazy val root = project
   .in(file("."))
@@ -7,8 +7,7 @@ lazy val root = project
     name    := "dfhdl_template",
     version := "0.1.0",
     scalacOptions ++= Seq(
-      "-deprecation", "-encoding", "UTF-8", "-feature", "-language:strictEquality",
-      "-language:implicitConversions"
+      "-deprecation", "-encoding", "UTF-8", "-feature", "-language:strictEquality"
     ),
     scalaVersion := scala3Version,
     addCompilerPlugin(
