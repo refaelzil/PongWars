@@ -1,0 +1,9 @@
+obj_dir/
+*.mp4
+*.bmp
+*.o
+*.a
+*.d
+.scala-build/
+target/
+vga-monitor-*/
