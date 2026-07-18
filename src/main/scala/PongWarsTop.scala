@@ -21,33 +21,36 @@ class pong_wars_top extends RTDesign:
   square.Px <> syncgen.x_px
   square.Py <> syncgen.y_px
   square.SOF <> SOF
-  val DR = square.DrawingRequest // Use the square's drawing request to determine active video
-  val sqR = square.vga_r // Get the square's RGB value
-  val sqG = square.vga_g // Get the square's RGB value
-  val sqB = square.vga_b // Get the square's RGB value
+  val DR = square.DrawingRequest 
+  val sqR = square.vga_r 
+  val sqG = square.vga_g 
+  val sqB = square.vga_b 
+
+   val border = new Border()
+   border.Px <> syncgen.x_px
+   border.Py <> syncgen.y_px
+   val border_DR = border.DrawingRequest
+   val border_R = border.vga_r
+   val border_G = border.vga_g
+   val border_B = border.vga_b
+
   if(syncgen.activevideo) // Left half of the screen
-    if(DR) // If the square is being drawn
-        vga_r := sqR // Use the square's color
-        vga_g := sqG // Use the square's color
-        vga_b := sqB // Use the square's color
-    else if (syncgen.x_px < 320 && syncgen.y_px < 240) // Top-left quadrant
-        vga_r := b"8'11111111" // Red for now
-        vga_g := b"8'00000000" // Green for now
-        vga_b := b"8'00000000" // Blue for now  
-    else if (syncgen.x_px >= 320 && syncgen.y_px < 240) // Top-right quadrant
-        vga_r := b"8'00000000" // Red for now
-        vga_g := b"8'11111111" // Green for now
-        vga_b := b"8'00000000" // Blue for now
-    else if (syncgen.x_px < 320 && syncgen.y_px >= 240) // Bottom-left quadrant
-        vga_r := b"8'00000000" // Red for now
-        vga_g := b"8'00000000" // Green for now
-        vga_b := b"8'11111111" // Blue for now
-    else // Bottom-right quadrant
-        vga_r := b"8'11111111" // Red for now
-        vga_g := b"8'11111111" // Green for now
-        vga_b := b"8'11111111" // Blue for now
+    if(DR)
+        vga_r := sqR 
+        vga_g := sqG 
+        vga_b := sqB 
+    else if (border_DR) // Top-left quadrant
+        vga_r := border_R 
+        vga_g := border_G
+        vga_b := border_B
+
+    else
+        vga_r := b"8'00000000" 
+        vga_g := b"8'00000000" 
+        vga_b := b"8'00000000" 
   else
-    vga_r := b"8'00000000" // Black during blanking
-    vga_g := b"8'00000000" // Black during blanking
-    vga_b := b"8'00000000" // Black during blanking
+        vga_r := b"8'00000000" 
+        vga_g := b"8'00000000" 
+        vga_b := b"8'00000000" 
 end pong_wars_top
+

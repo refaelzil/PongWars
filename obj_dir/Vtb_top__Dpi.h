@@ -16,11 +16,11 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at /home/tony/vga-monitor-0.4.0-linux-x86_64/vga_monitor.sv:51:34
+    // DPI import at rtl/vga_monitor.sv:51:34
     extern void vga_monitor_close(void* handle);
-    // DPI import at /home/tony/vga-monitor-0.4.0-linux-x86_64/vga_monitor.sv:42:34
+    // DPI import at rtl/vga_monitor.sv:42:34
     extern void vga_monitor_event(void* handle, double t, unsigned char r, unsigned char g, unsigned char b, int hsync, int vsync);
-    // DPI import at /home/tony/vga-monitor-0.4.0-linux-x86_64/vga_monitor.sv:41:37
+    // DPI import at rtl/vga_monitor.sv:41:37
     extern void* vga_monitor_open(const char* name);
 
 #ifdef __cplusplus
