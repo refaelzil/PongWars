@@ -39,8 +39,8 @@ module SquareObject(
       vga_b        = square_5;
     end
     if (SOF) begin
-      topLeftX_din = (topLeftX + 10'd30) % 10'd640;
-      topLeftY_din = (topLeftY + 10'd30) % 10'd480;
+      topLeftX_din = (topLeftX + 10'd15) % 10'd640;
+      topLeftY_din = (topLeftY + 10'd15) % 10'd480;
     end
   end
   always_ff @(posedge clk)

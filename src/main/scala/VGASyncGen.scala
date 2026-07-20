@@ -23,12 +23,12 @@ import dfhdl.*
    */
   val activeHvideo: Int <> CONST = 640 // Width of visible pixels.
   val activeVvideo: Int <> CONST = 480 // Height of visible lines.
-  val hfp: Int <> CONST = 24 // Horizontal front porch length.
-  val hpulse: Int <> CONST = 40 // Hsync pulse length.
-  val hbp: Int <> CONST = 128 // Horizontal back porch length.
-  val vfp: Int <> CONST = 9 // Vertical front porch length.
-  val vpulse: Int <> CONST = 3 // Vsync pulse length.
-  val vbp: Int <> CONST = 28 // Vertical back porch length.
+  val hfp: Int <> CONST = 16 // Horizontal front porch length.
+  val hpulse: Int <> CONST = 96 // Hsync pulse length.
+  val hbp: Int <> CONST = 48 // Horizontal back porch length.
+  val vfp: Int <> CONST = 10 // Vertical front porch length.
+  val vpulse: Int <> CONST = 2 // Vsync pulse length.
+  val vbp: Int <> CONST = 33 // Vertical back porch length.
   val blackH = hfp + hpulse + hbp // Hide pixels in one line.
   val blackV = vfp + vpulse + vbp // Hide lines in one frame.
   val hpixels = blackH + activeHvideo // Total horizontal pixels.

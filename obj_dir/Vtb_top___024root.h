@@ -27,6 +27,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_top___024root final {
     CData/*0:0*/ tb_top__DOT__dut__DOT__SOF;
     CData/*0:0*/ tb_top__DOT__dut__DOT__prev_vsync;
     CData/*0:0*/ tb_top__DOT__dut__DOT__state;
+    CData/*0:0*/ tb_top__DOT__dut__DOT__circle_DR;
     CData/*0:0*/ tb_top__DOT__dut__DOT__DR;
     CData/*0:0*/ tb_top__DOT__dut__DOT__border_DR;
     CData/*0:0*/ tb_top__DOT__dut__DOT__syncgen_activevideo;

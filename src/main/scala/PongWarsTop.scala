@@ -17,6 +17,15 @@ class pong_wars_top extends RTDesign:
     prev_vsync.din := syncgen.vsync
     SOF := prev_vsync && !vsync // Generate SOF on falling edge of vsync
   }
+  val circle = new DrawCircle()
+  circle.Px <> syncgen.x_px
+  circle.Py <> syncgen.y_px
+  val circle_DR = circle.DrawingRequest
+  val circle_R = circle.vga_r       
+  val circle_G = circle.vga_g
+  val circle_B = circle.vga_b
+  
+  
   val square = new SquareObject()
   square.Px <> syncgen.x_px
   square.Py <> syncgen.y_px
@@ -34,21 +43,26 @@ class pong_wars_top extends RTDesign:
    val border_G = border.vga_g
    val border_B = border.vga_b
 
-  if(syncgen.activevideo) // Left half of the screen
+  if(syncgen.activevideo) 
     if(DR)
         vga_r := sqR 
         vga_g := sqG 
         vga_b := sqB 
-    else if (border_DR) // Top-left quadrant
+    else if (border_DR) 
         vga_r := border_R 
         vga_g := border_G
         vga_b := border_B
+    else if (circle_DR) 
+        vga_r := circle_R 
+        vga_g := circle_G
+        vga_b := circle_B
 
     else
         vga_r := b"8'00000000" 
         vga_g := b"8'00000000" 
         vga_b := b"8'00000000" 
-  else
+
+  else 
         vga_r := b"8'00000000" 
         vga_g := b"8'00000000" 
         vga_b := b"8'00000000" 

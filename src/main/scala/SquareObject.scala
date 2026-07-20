@@ -25,8 +25,8 @@ class SquareObject extends RTDesign:
     vga_b :=  b"8'00000000"
   if(SOF)
     // Move the square diagonally across the screen
-    topLeftX.din := (topLeftX + d"10'30") % d"10'640" // Wrap around at 640 to stay within 640px width
-    topLeftY.din := (topLeftY + d"10'30") % d"10'480" // Wrap around at 480 to stay within 480px height
+    topLeftX.din := (topLeftX + d"10'15") % d"10'640" // Wrap around at 640 to stay within 640px width
+    topLeftY.din := (topLeftY + d"10'15") % d"10'480" // Wrap around at 480 to stay within 480px height
   
 end SquareObject
     

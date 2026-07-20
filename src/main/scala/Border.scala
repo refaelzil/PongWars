@@ -13,13 +13,14 @@ class Border extends RTDesign:
     val border_left_limit: Int <> CONST = 64 // Lower limit for the border in x direction
     val border_lower_limit: Int <> CONST = 368 // Lower limit for the border in y direction
     val border_right_limit: Int <> CONST = 576 // Upper limit for the border in x direction
-    if((Px < border_left_limit) && (Px >= (border_left_limit - border_thickness) ))
-        DrawingRequest := 1
-    else if (Px >= border_right_limit && Px < (border_right_limit + border_thickness) )
-        DrawingRequest := 1
-    else if (Py < border_upper_limit && Py >= (border_upper_limit - border_thickness) )
-        DrawingRequest := 1
-    else if (Py >= border_lower_limit && Py < (border_lower_limit + border_thickness) )
+    if( ((Py >= (border_upper_limit - border_thickness)) && (Py < border_upper_limit) &&
+     (Px >= (border_left_limit - border_thickness)) && (Px < (border_right_limit + border_thickness))) ||
+    ((Py >= border_lower_limit) && (Py < (border_lower_limit + border_thickness)) &&
+     (Px >= (border_left_limit - border_thickness)) && (Px < (border_right_limit + border_thickness))) ||
+    ((Px >= (border_left_limit - border_thickness)) && (Px < border_left_limit) &&
+     (Py >= (border_upper_limit - border_thickness)) && (Py < (border_lower_limit + border_thickness))) ||
+    ((Px >= border_right_limit) && (Px < (border_right_limit + border_thickness)) &&
+     (Py >= (border_upper_limit - border_thickness)) && (Py < (border_lower_limit + border_thickness))) )
         DrawingRequest := 1
     else
         DrawingRequest := 0

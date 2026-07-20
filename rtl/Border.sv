@@ -20,10 +20,7 @@ module Border(
   localparam logic [7:0] border_2 = 8'hff;
   always_comb
   begin
-    if ((Px < 10'(border_left_limit)) && (Px >= 10'(border_left_limit - border_thickness))) DrawingRequest = 1'b1;
-    else if ((Px >= 10'(border_right_limit)) && (Px < 10'(border_right_limit + border_thickness))) DrawingRequest = 1'b1;
-    else if ((Py < 10'(border_upper_limit)) && (Py >= 10'(border_upper_limit - border_thickness))) DrawingRequest = 1'b1;
-    else if ((Py >= 10'(border_lower_limit)) && (Py < 10'(border_lower_limit + border_thickness))) DrawingRequest = 1'b1;
+    if (((Py >= 10'(border_upper_limit - border_thickness)) & (Py < 10'(border_upper_limit)) & (Px >= 10'(border_left_limit - border_thickness)) & (Px < 10'(border_right_limit + border_thickness))) | ((Py >= 10'(border_lower_limit)) & (Py < 10'(border_lower_limit + border_thickness)) & (Px >= 10'(border_left_limit - border_thickness)) & (Px < 10'(border_right_limit + border_thickness))) | ((Px >= 10'(border_left_limit - border_thickness)) & (Px < 10'(border_left_limit)) & (Py >= 10'(border_upper_limit - border_thickness)) & (Py < 10'(border_lower_limit + border_thickness))) | ((Px >= 10'(border_right_limit)) & (Px < 10'(border_right_limit + border_thickness)) & (Py >= 10'(border_upper_limit - border_thickness)) & (Py < 10'(border_lower_limit + border_thickness)))) DrawingRequest = 1'b1;
     else DrawingRequest = 1'b0;
   end
   assign vga_r = border_0;

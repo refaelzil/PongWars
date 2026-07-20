@@ -17,6 +17,10 @@ module pong_wars_top(
   logic        SOF;
   logic        prev_vsync;
   t_enum_State state;
+  logic        circle_DR;
+  logic [7:0]  circle_R;
+  logic [7:0]  circle_G;
+  logic [7:0]  circle_B;
   logic        DR;
   logic [7:0]  sqR;
   logic [7:0]  sqG;
@@ -34,6 +38,8 @@ module pong_wars_top(
   logic        syncgen_hsync;
   logic [9:0]  syncgen_x_px;
   logic        syncgen_vsync;
+  logic [9:0]  circle_Py;
+  logic [9:0]  circle_Px;
   logic [9:0]  square_Py;
   logic        square_rst;
   logic        square_SOF;
@@ -49,6 +55,14 @@ module pong_wars_top(
     .hsync       /*-->*/ (syncgen_hsync),
     .x_px        /*-->*/ (syncgen_x_px),
     .vsync       /*-->*/ (syncgen_vsync)
+  );
+  DrawCircle circle(
+    .Py          /*<--*/ (circle_Py),
+    .Px          /*<--*/ (circle_Px),
+    .vga_b       /*-->*/ (circle_B),
+    .vga_r       /*-->*/ (circle_R),
+    .vga_g       /*-->*/ (circle_G),
+    .DrawingRequest /*-->*/ (circle_DR)
   );
   SquareObject square(
     .Py          /*<--*/ (square_Py),
@@ -71,6 +85,8 @@ module pong_wars_top(
   );
   assign hsync       = syncgen_hsync;
   assign vsync       = syncgen_vsync;
+  assign circle_Px   = syncgen_x_px;
+  assign circle_Py   = syncgen_y_px;
   assign square_Px   = syncgen_x_px;
   assign square_Py   = syncgen_y_px;
   assign square_SOF  = SOF;
@@ -79,43 +95,48 @@ module pong_wars_top(
   always_comb
   begin
     prev_vsync_din = prev_vsync;
-    state_din     = state;
+    state_din    = state;
     unique case (state)
       State_S_0: begin
         prev_vsync_din = syncgen_vsync;
-        SOF       = prev_vsync & (~vsync);
+        SOF      = prev_vsync & (~vsync);
         state_din = State_S_0;
       end
     endcase
     if (syncgen_activevideo) begin
       if (DR) begin
-        vga_r     = sqR;
-        vga_g     = sqG;
-        vga_b     = sqB;
+        vga_r    = sqR;
+        vga_g    = sqG;
+        vga_b    = sqB;
       end
       else if (border_DR) begin
-        vga_r     = border_R;
-        vga_g     = border_G;
-        vga_b     = border_B;
+        vga_r    = border_R;
+        vga_g    = border_G;
+        vga_b    = border_B;
+      end
+      else if (circle_DR) begin
+        vga_r    = circle_R;
+        vga_g    = circle_G;
+        vga_b    = circle_B;
       end
       else begin
-        vga_r     = 8'h00;
-        vga_g     = 8'h00;
-        vga_b     = 8'h00;
+        vga_r    = 8'h00;
+        vga_g    = 8'h00;
+        vga_b    = 8'h00;
       end
     end
     else begin
-      vga_r       = 8'h00;
-      vga_g       = 8'h00;
-      vga_b       = 8'h00;
+      vga_r      = 8'h00;
+      vga_g      = 8'h00;
+      vga_b      = 8'h00;
     end
   end
   always_ff @(posedge clk)
   begin
     if (rst == 1'b1) state <= State_S_0;
     else begin
-      prev_vsync  <= prev_vsync_din;
-      state       <= state_din;
+      prev_vsync <= prev_vsync_din;
+      state      <= state_din;
     end
   end
   assign syncgen_clk = clk;

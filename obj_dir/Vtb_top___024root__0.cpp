@@ -144,12 +144,12 @@ void Vtb_top___024root___nba_sequent__TOP__0(Vtb_top___024root* vlSelf) {
             vlSelfRef.tb_top__DOT__dut__DOT__square__DOT__topLeftX 
                 = (0x000003ffU & VL_MODDIV_III(10, 
                                                (0x000003ffU 
-                                                & ((IData)(0x001eU) 
+                                                & ((IData)(0x000fU) 
                                                    + (IData)(vlSelfRef.tb_top__DOT__dut__DOT__square__DOT__topLeftX))), (IData)(0x0280U)));
             vlSelfRef.tb_top__DOT__dut__DOT__square__DOT__topLeftY 
                 = (0x000003ffU & VL_MODDIV_III(10, 
                                                (0x000003ffU 
-                                                & ((IData)(0x001eU) 
+                                                & ((IData)(0x000fU) 
                                                    + (IData)(vlSelfRef.tb_top__DOT__dut__DOT__square__DOT__topLeftY))), (IData)(0x01e0U)));
         } else {
             vlSelfRef.tb_top__DOT__dut__DOT__square__DOT__topLeftX 
@@ -181,32 +181,55 @@ void Vtb_top___024root___nba_sequent__TOP__0(Vtb_top___024root* vlSelf) {
         = __Vdly__tb_top__DOT__dut__DOT__syncgen__DOT__vc;
     if (vlSelfRef.tb_top__DOT__dut__DOT__state) {
         if (VL_UNLIKELY((vlSymsp->_vm_contextp__->assertOn()))) {
-            VL_WRITEF_NX("[%0t] %%Error: pong_wars_top.sv:83: Assertion failed in %m: unique case, but none matched for '1'h%X'\n",4, 'M',vlSymsp->name(),"tb_top.dut", 'T',-9
+            VL_WRITEF_NX("[%0t] %%Error: pong_wars_top.sv:99: Assertion failed in %m: unique case, but none matched for '1'h%X'\n",4, 'M',vlSymsp->name(),"tb_top.dut", 'T',-9
                          , '#',64,VL_TIME_UNITED_Q(1000)
                          , '#',1,(IData)(vlSelfRef.tb_top__DOT__dut__DOT__state));
-            VL_STOP_MT("rtl/pong_wars_top.sv", 83, "");
+            VL_STOP_MT("rtl/pong_wars_top.sv", 99, "");
         }
     }
     vlSelfRef.tb_top__DOT__dut__DOT__syncgen_activevideo 
         = ((0x00a0U <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__hc)) 
            & (0x002dU <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__vc)));
+    vlSelfRef.tb_top__DOT__dut__DOT__circle_DR = (0x00000040U 
+                                                  >= 
+                                                  ((((IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px) 
+                                                     - (IData)(0x00000140U)) 
+                                                    * 
+                                                    ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px) 
+                                                     - (IData)(0x00000140U))) 
+                                                   + 
+                                                   (((IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px) 
+                                                     - (IData)(0x000000f0U)) 
+                                                    * 
+                                                    ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px) 
+                                                     - (IData)(0x000000f0U)))));
     vlSelfRef.tb_top__DOT__dut__DOT__border_DR = ((
-                                                   (0x0040U 
-                                                    > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px)) 
-                                                   & (0x0036U 
-                                                      <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px))) 
-                                                  | (((0x0240U 
-                                                       <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px)) 
-                                                      & (0x024aU 
-                                                         > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px))) 
-                                                     | (((0x0070U 
-                                                          > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px)) 
-                                                         & (0x0066U 
-                                                            <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px))) 
-                                                        | ((0x0170U 
-                                                            <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px)) 
-                                                           & (0x017aU 
-                                                              > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px))))));
+                                                   (0x017aU 
+                                                    > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px)) 
+                                                   & (((0x0066U 
+                                                        <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px)) 
+                                                       & (((0x0036U 
+                                                            <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px)) 
+                                                           & (0x0040U 
+                                                              > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px))) 
+                                                          | ((0x024aU 
+                                                              > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px)) 
+                                                             & (0x0240U 
+                                                                <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px))))) 
+                                                      | ((0x0036U 
+                                                          <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px)) 
+                                                         & ((0x024aU 
+                                                             > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px)) 
+                                                            & (0x0170U 
+                                                               <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px)))))) 
+                                                  | ((0x0066U 
+                                                      <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px)) 
+                                                     & ((0x0036U 
+                                                         <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px)) 
+                                                        & ((0x0070U 
+                                                            > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_y_px)) 
+                                                           & (0x024aU 
+                                                              > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px))))));
     vlSelfRef.tb_top__DOT__dut__DOT__DR = (((IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px) 
                                             >= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__square__DOT__topLeftX)) 
                                            & (((IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen_x_px) 
@@ -250,22 +273,28 @@ void Vtb_top___024root___nba_sequent__TOP__2(Vtb_top___024root* vlSelf) {
                                 & (0x0070U > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__hc)))));
     if (vlSelfRef.tb_top__DOT__dut__DOT__syncgen_activevideo) {
         if (vlSelfRef.tb_top__DOT__dut__DOT__DR) {
+            vlSelfRef.tb_top__DOT__b = 0U;
             vlSelfRef.tb_top__DOT__g = (0x000000ffU 
                                         & (- (IData)((IData)(vlSelfRef.tb_top__DOT__dut__DOT__DR))));
-            vlSelfRef.tb_top__DOT__b = 0U;
+        } else if (vlSelfRef.tb_top__DOT__dut__DOT__border_DR) {
+            vlSelfRef.tb_top__DOT__b = 0xffU;
+            vlSelfRef.tb_top__DOT__g = (0x000000ffU 
+                                        & 0U);
         } else {
-            vlSelfRef.tb_top__DOT__g = 0U;
-            vlSelfRef.tb_top__DOT__b = ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__border_DR)
-                                         ? 0xffU : 0U);
+            vlSelfRef.tb_top__DOT__b = 0U;
+            vlSelfRef.tb_top__DOT__g = (0x000000ffU 
+                                        & ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__circle_DR)
+                                            ? (- (IData)((IData)(vlSelfRef.tb_top__DOT__dut__DOT__circle_DR)))
+                                            : 0U));
         }
     } else {
-        vlSelfRef.tb_top__DOT__g = 0U;
         vlSelfRef.tb_top__DOT__b = 0U;
+        vlSelfRef.tb_top__DOT__g = 0U;
     }
     vlSelfRef.vsync = (1U & (~ ((0x000aU <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__vc)) 
                                 & (0x000cU > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__vc)))));
-    vlSelfRef.vga_g = vlSelfRef.tb_top__DOT__g;
     vlSelfRef.vga_b = vlSelfRef.tb_top__DOT__b;
+    vlSelfRef.vga_g = vlSelfRef.tb_top__DOT__g;
     if ((1U & (~ (IData)(vlSelfRef.tb_top__DOT__dut__DOT__state)))) {
         vlSelfRef.tb_top__DOT__dut__DOT__SOF = ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__prev_vsync) 
                                                 & (~ (IData)(vlSelfRef.vsync)));
@@ -303,23 +332,28 @@ void Vtb_top___024root___eval_nba(Vtb_top___024root* vlSelf) {
                                     & (0x0070U > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__hc)))));
         if (vlSelfRef.tb_top__DOT__dut__DOT__syncgen_activevideo) {
             if (vlSelfRef.tb_top__DOT__dut__DOT__DR) {
+                vlSelfRef.tb_top__DOT__b = 0U;
                 vlSelfRef.tb_top__DOT__g = (0x000000ffU 
                                             & (- (IData)((IData)(vlSelfRef.tb_top__DOT__dut__DOT__DR))));
-                vlSelfRef.tb_top__DOT__b = 0U;
+            } else if (vlSelfRef.tb_top__DOT__dut__DOT__border_DR) {
+                vlSelfRef.tb_top__DOT__b = 0xffU;
+                vlSelfRef.tb_top__DOT__g = (0x000000ffU 
+                                            & 0U);
             } else {
-                vlSelfRef.tb_top__DOT__g = 0U;
-                vlSelfRef.tb_top__DOT__b = ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__border_DR)
-                                             ? 0xffU
-                                             : 0U);
+                vlSelfRef.tb_top__DOT__b = 0U;
+                vlSelfRef.tb_top__DOT__g = (0x000000ffU 
+                                            & ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__circle_DR)
+                                                ? (- (IData)((IData)(vlSelfRef.tb_top__DOT__dut__DOT__circle_DR)))
+                                                : 0U));
             }
         } else {
-            vlSelfRef.tb_top__DOT__g = 0U;
             vlSelfRef.tb_top__DOT__b = 0U;
+            vlSelfRef.tb_top__DOT__g = 0U;
         }
         vlSelfRef.vsync = (1U & (~ ((0x000aU <= (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__vc)) 
                                     & (0x000cU > (IData)(vlSelfRef.tb_top__DOT__dut__DOT__syncgen__DOT__vc)))));
-        vlSelfRef.vga_g = vlSelfRef.tb_top__DOT__g;
         vlSelfRef.vga_b = vlSelfRef.tb_top__DOT__b;
+        vlSelfRef.vga_g = vlSelfRef.tb_top__DOT__g;
         if ((1U & (~ (IData)(vlSelfRef.tb_top__DOT__dut__DOT__state)))) {
             vlSelfRef.tb_top__DOT__dut__DOT__SOF = 
                 ((IData)(vlSelfRef.tb_top__DOT__dut__DOT__prev_vsync) 
