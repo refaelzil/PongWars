@@ -17,9 +17,18 @@ class pong_wars_top extends RTDesign:
     prev_vsync.din := syncgen.vsync
     SOF := prev_vsync && !vsync // Generate SOF on falling edge of vsync
   }
-  val circle = new DrawCircle()
+
+
+  val collision_control = new CollisionControl()
+  collision_control.ball_dr <> circle_DR
+  collision_control.border_dr <> border_DR
+
+
+  val circle = new CircleTop()
   circle.Px <> syncgen.x_px
   circle.Py <> syncgen.y_px
+  circle.SOF <> SOF
+  circle.collision <> collision_control.collision
   val circle_DR = circle.DrawingRequest
   val circle_R = circle.vga_r       
   val circle_G = circle.vga_g

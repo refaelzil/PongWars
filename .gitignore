@@ -4,8 +4,12 @@ project/target
 project/metals.sbt
 project/.bloop
 target/
-/.metals/
-/.bloop/
-/.bsp/
-/.vscode/
+.metals/
+.bloop/
+.bsp/
+.vscode/
 sandbox/
+rtl/
+.scala-build/
+obj_dir/
+project/
