@@ -23,13 +23,15 @@ class pong_wars_top extends RTDesign:
   
     //init instances
     val collision_control = new CollisionControl()
-    val circle = new CircleTop()
+    val circle_evil = new CircleTop(is_evil = true, x_init = 520, y_init = 240)
+    val circle_good = new CircleTop(is_evil = false, x_init = 120, y_init = 240)
     val border = new Border()
     val matrix = new Matrix()
     //matrix VARS
     matrix.Px <> syncgen.x_px
     matrix.Py <> syncgen.y_px
-    matrix.collision <> collision_control.collision(1)
+    matrix.collision_evil <> collision_control.collision_evil(1)
+    matrix.collision_good <> collision_control.collision_good(1)
     val matrix_dr = matrix.matrix_dr
     val matrix_r = matrix.vga_r
     val matrix_g = matrix.vga_g
@@ -37,14 +39,23 @@ class pong_wars_top extends RTDesign:
     
 
     //Circle VARS
-    circle.Px <> syncgen.x_px
-    circle.Py <> syncgen.y_px
-    circle.SOF <> SOF
-    circle.collision <> collision_control.collision
-    val circle_DR = circle.DrawingRequest
-    val circle_R = circle.vga_r
-    val circle_G = circle.vga_g
-    val circle_B = circle.vga_b
+    circle_evil.Px <> syncgen.x_px
+    circle_evil.Py <> syncgen.y_px
+    circle_evil.SOF <> SOF
+    circle_evil.collision <> collision_control.collision_evil
+    val circle_evil_DR = circle_evil.DrawingRequest
+    val circle_evil_R = circle_evil.vga_r
+    val circle_evil_G = circle_evil.vga_g
+    val circle_evil_B = circle_evil.vga_b
+
+    circle_good.Px <> syncgen.x_px
+    circle_good.Py <> syncgen.y_px
+    circle_good.SOF <> SOF
+    circle_good.collision <> collision_control.collision_good
+    val circle_good_DR = circle_good.DrawingRequest
+    val circle_good_R = circle_good.vga_r
+    val circle_good_G = circle_good.vga_g
+    val circle_good_B = circle_good.vga_b
 
 
 
@@ -55,7 +66,8 @@ class pong_wars_top extends RTDesign:
     val border_G = border.vga_g
     val border_B = border.vga_b
 
-    collision_control.ball_dr <> circle_DR
+    collision_control.ball_evil_dr <> circle_evil_DR
+    collision_control.ball_good_dr <> circle_good_DR
     collision_control.border_dr <> border_DR
     collision_control.matrix_dr <> matrix_dr
 
@@ -64,10 +76,14 @@ class pong_wars_top extends RTDesign:
             vga_r := border_R 
             vga_g := border_G
             vga_b := border_B
-        else if (circle_DR) 
-            vga_r := circle_R 
-            vga_g := circle_G
-            vga_b := circle_B
+        else if (circle_evil_DR) 
+            vga_r := circle_evil_R 
+            vga_g := circle_evil_G
+            vga_b := circle_evil_B
+        else if (circle_good_DR)
+            vga_r := circle_good_R
+            vga_g := circle_good_G
+            vga_b := circle_good_B
         else if (matrix_dr(0))
             vga_r := matrix_r
             vga_g := matrix_g

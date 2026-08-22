@@ -3,8 +3,9 @@ import dfhdl.* //import all the DFHDL goodness
 class Matrix extends RTDesign{
     val Px = UInt(10) <> IN
     val Py = UInt(10) <> IN
-    val collision = Bit <> IN
-    val collision_d = Bit <> VAR.REG init 0
+    val collision_evil = Bit <> IN
+    val collision_good = Bit <> IN
+    val collision_d = Bits(2) <> VAR.REG init b"2'00"
     val matrix = Bits[1] X 32 X 16 <> VAR.REG init Vector(Vector(b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1"),
                                                   Vector(b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1"),
                                                   Vector(b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'0",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1'1",b"1"),
@@ -37,7 +38,8 @@ class Matrix extends RTDesign{
     val row_uint = UInt(10) <> VAR
     val col_uint = UInt(10) <> VAR
 
-    collision_d.din := collision
+    collision_d(0).din := collision_evil
+    collision_d(1).din := collision_good
     if(Px >= border_left_limit && Px <= border_right_limit && Py >= border_upper_limit && Py <= border_lower_limit){
         row_uint := (Py - border_upper_limit) / 16
         col_uint := (Px - border_left_limit) / 16//how to cast Uint to Bits?
@@ -54,7 +56,13 @@ class Matrix extends RTDesign{
         matrix_dr := b"2'00"
 
     }
-    if(collision_d){
+    if(collision_d(0)){
+        matrix(row)(col).din := ~matrix(row)(col)
+    }
+    else{
+        matrix(row)(col).din := matrix(row)(col)
+    }
+    if(collision_d(1)){
         matrix(row)(col).din := ~matrix(row)(col)
     }
     else{

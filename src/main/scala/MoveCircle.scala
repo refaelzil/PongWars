@@ -1,12 +1,12 @@
 import dfhdl.* //import all the DFHDL goodness
 
-class MoveCircle extends RTDesign {
+class MoveCircle (val x_init: SInt[11] <> CONST, val y_init: SInt[11] <> CONST) extends RTDesign {
   val Px = UInt(10) <> IN
   val Py = UInt(10) <> IN
   val SOF = Bit <> IN // Start of frame signal for game logic
   val collision = Bits(2) <> IN // Collision signal from CollisionControl
-  val center_x = SInt(11) <> OUT.REG init 240  // Width of visible pixels.
-  val center_y = SInt(11) <> OUT.REG init 240  // Height of visible lines.
+  val center_x = SInt(11) <> OUT.REG init x_init   // Width of visible pixels.
+  val center_y = SInt(11) <> OUT.REG init y_init  // Height of visible lines.
   val speed_x = SInt(11) <> VAR.REG init 7 // Speed of the circle's movement
   val speed_y = SInt(11) <> VAR.REG init 7 // Speed of the circle's movement
   val corners =  Bits(4) <> VAR.REG init b"4'0"  // Corners of the circle for collision detection
