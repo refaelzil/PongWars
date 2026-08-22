@@ -7,9 +7,10 @@ class Border extends RTDesign:
     val vga_r = Bits(8) <> OUT
     val vga_g = Bits(8) <> OUT
     val vga_b = Bits(8) <> OUT
+    //val in_border = Bit <> OUT
 
     val border_thickness: Int <> CONST = 10 // Thickness of the border in pixels
-    val border_upper_limit: Int <> CONST = 112 // Upper limit for the border
+    val border_upper_limit: Int <> CONST = 113 // Upper limit for the border
     val border_left_limit: Int <> CONST = 64 // Lower limit for the border in x direction
     val border_lower_limit: Int <> CONST = 368 // Lower limit for the border in y direction
     val border_right_limit: Int <> CONST = 576 // Upper limit for the border in x direction
@@ -25,6 +26,12 @@ class Border extends RTDesign:
     else
         DrawingRequest := 0
     end if
+
+    //if(Px <= border_right_limit && Px >= border_left_limit && Py <= border_lower_limit && Py >= border_upper_limit)
+    //    in_border := 1
+    //else
+    //    in_border := 0
+    //end if
 
     vga_r := b"8'00000000"
     vga_g := b"8'00000000"

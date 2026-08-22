@@ -26,10 +26,10 @@ class DrawCircle extends RTDesign:
   if(DrawingRequest) 
     vga_r :=  b"8'00000000"
     vga_g :=  b"8'11111111"
-    vga_b :=  b"8'00000000" 
+    vga_b :=  b"8'00000000"
   else 
     vga_r :=  b"8'00000000"
-    vga_g :=  b"8'00000000" 
+    vga_g :=  b"8'00000000"
     vga_b :=  b"8'00000000"
 
   

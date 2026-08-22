@@ -5,6 +5,7 @@ class CircleTop extends RTDesign {
     val Py = UInt(10) <> IN
     val SOF = Bit <> IN 
     val collision = Bits(2) <> IN
+
     
     val DrawingRequest = Bit <> OUT
     val vga_r = Bits(8) <> OUT
@@ -17,8 +18,6 @@ class CircleTop extends RTDesign {
     move_circle.Py <> Py
     move_circle.collision <> collision
     
-   
-
     val draw_circle = new DrawCircle()
     draw_circle.Px <> Px 
     draw_circle.Py <> Py
@@ -29,4 +28,14 @@ class CircleTop extends RTDesign {
     vga_r := draw_circle.vga_r
     vga_g := draw_circle.vga_g
     vga_b := draw_circle.vga_b
+
+
+    
+
+
+
+
+
+
+
 }
