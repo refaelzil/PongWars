@@ -23,6 +23,11 @@ module tb_top (
     
     vga_monitor mon (.r, .g, .b, .hsync, .vsync);
 
+    always @(posedge clk_25MHz) begin
+    if (dut.SOF)
+        $display("t=%0t   center_x_evil=%d center_y_evil=%d center_x_good=%d center_y_good=%d", $time, dut.circle_evil.move_circle.center_x, dut.circle_evil.move_circle.center_y ,dut.circle_good.move_circle.center_x, dut.circle_good.move_circle.center_y);
+    end
+
     assign vga_r = r;
     assign vga_g = g;
     assign vga_b = b;

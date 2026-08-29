@@ -12,7 +12,7 @@ class DrawCircle (val is_evil : Boolean <> CONST) extends RTDesign:
   val vga_r = Bits(8) <> OUT
   val vga_g = Bits(8) <> OUT
   val vga_b = Bits(8) <> OUT
-  val color = Bits(8) <> VAR init b"8'00000000"
+  val color = Bits(8) <> VAR init is_evil.sel(b"8'00000000", b"8'11111111") // Color of the circle based on is_evil flag
 
   val delta_x = Px.signed -^ center_x
   val delta_y = Py.signed -^ center_y
@@ -22,11 +22,6 @@ class DrawCircle (val is_evil : Boolean <> CONST) extends RTDesign:
   val radius_squared = radius * radius
 
   DrawingRequest := (product_x + product_y) <= radius_squared.signed  
-
-  if(is_evil) 
-    color := b"8'00000000"
-  else 
-    color := b"8'11111111"
 
   if(DrawingRequest) 
     vga_r :=  color

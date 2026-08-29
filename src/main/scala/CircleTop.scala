@@ -6,7 +6,7 @@ class CircleTop (val is_evil : Boolean <> CONST, val x_init: SInt[11] <> CONST, 
     val SOF = Bit <> IN 
     val collision = Bits(2) <> IN
 
-    
+    val recursive = Bit <> OUT.REG
     val DrawingRequest = Bit <> OUT
     val vga_r = Bits(8) <> OUT
     val vga_g = Bits(8) <> OUT
@@ -17,6 +17,7 @@ class CircleTop (val is_evil : Boolean <> CONST, val x_init: SInt[11] <> CONST, 
     move_circle.Px <> Px
     move_circle.Py <> Py
     move_circle.collision <> collision
+    move_circle.recursive <> recursive
     
     val draw_circle = new DrawCircle(is_evil)
     draw_circle.Px <> Px 
