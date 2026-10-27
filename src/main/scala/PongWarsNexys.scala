@@ -55,6 +55,7 @@ class PongWarsNexys extends RTDesign:
   val vga_b   = Bits(4) <> OUT
 
   @timing.clock(rate = 25.MHz, grpName = "vga")
+  @timing.reset(mode = _.sync, active = _.low, portName = "rst_n")
   val dmn = new RTDomain:
     val clk  = Clk <> VAR
     val core = new pong_wars_top
