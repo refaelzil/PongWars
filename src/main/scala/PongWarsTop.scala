@@ -89,9 +89,9 @@ class pong_wars_top extends RTDesign:
       vga_g := b"8'10000000"
       vga_b := b"8'10000000"
   else
-    vga_r := b"8'10000000"
-    vga_g := b"8'10000000"
-    vga_b := b"8'10000000"
+    vga_r := b"8'00000000"
+    vga_g := b"8'00000000"
+    vga_b := b"8'00000000"
   end if
 
 end pong_wars_top
