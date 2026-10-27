@@ -32,19 +32,33 @@ class VGAClkGen
 // design's own vga_r/g/b ports are declared as exactly 4 bits each -
 // carrying only the top (most-significant) 4 bits of pong_wars_top's
 // 8-bit outputs.
+//
+// RESET: the vga domain's reset is active-low (rst_n). It is driven by
+// the AND of two conditions, so the game is held in reset whenever
+// EITHER is false:
+//   * vgaClkGen.locked - the MMCM has not achieved lock yet, so the
+//     25MHz pixel clock is not yet trustworthy (this is the original,
+//     power-up-only reset behaviour).
+//   * !rst_btn         - the user is holding the reset button down.
+// Following dfhdl-platforms' own example, the board button is wired to
+// a top-level IN port of this design rather than reaching directly into
+// the inner domain, and `ExpectedActiveState[Button] = Button.Pressed`
+// declares that the port is logic-1 while the button is pressed.
 @timing.clock(rate = 100.MHz, grpName = "main")
 class PongWarsNexys extends RTDesign:
-  val clk   = Clk <> IN
-  val hsync = Bit <> OUT
-  val vsync = Bit <> OUT
-  val vga_r = Bits(4) <> OUT
-  val vga_g = Bits(4) <> OUT
-  val vga_b = Bits(4) <> OUT
+  val clk     = Clk <> IN
+  val rst_btn = Bit <> IN
+  val hsync   = Bit <> OUT
+  val vsync   = Bit <> OUT
+  val vga_r   = Bits(4) <> OUT
+  val vga_g   = Bits(4) <> OUT
+  val vga_b   = Bits(4) <> OUT
 
   @timing.clock(rate = 25.MHz, grpName = "vga")
   val dmn = new RTDomain:
     val clk  = Clk <> VAR
     val core = new pong_wars_top
+    val rst_n = Rst <> VAR
 
   hsync <> dmn.core.hsync
   vsync <> dmn.core.vsync
@@ -55,6 +69,7 @@ class PongWarsNexys extends RTDesign:
   val vgaClkGen = new VGAClkGen
   vgaClkGen.clk <> clk.actual
   dmn.clk <> vgaClkGen.vga_clk.as(dmn.Clk)
+  dmn.rst_n <> (vgaClkGen.locked && !rst_btn).as(dmn.Rst)
 
   val board = new NexysA7
   board.vgaJ3.HS <> hsync
@@ -63,4 +78,6 @@ class PongWarsNexys extends RTDesign:
   board.vgaJ3.G  <> vga_g
   board.vgaJ3.B  <> vga_b
   this <> board.clocks.CLK_100MHz
+  board.buttons.BTNL <> rst_btn
+  given ExpectedActiveState[Button] = Button.Pressed
 end PongWarsNexys
